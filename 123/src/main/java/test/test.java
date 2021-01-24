@@ -138,6 +138,7 @@ public class test {
 	                		mathpre1=id-1;
 	                		mathpre2=id-2;
 	                	}
+	            		if(a.length()>=25||pre1.length()>=40||pre2.length()>=40||next1.length()>=40||next2.length()>=40)continue;
 	                	MySQLCre.superadd(id,q_or_a,part,a, pre1, pre2, next1, next2,line,flag,line%1000);//需要添加，line第几条语句，length本语句第几个词
 
 	                	
