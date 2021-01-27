@@ -36,7 +36,7 @@ public class test {
 	            
 	            // 一次读入一行，直到读入null为文件结束
 	            while ((tempString = reader.readLine()) != null) {
-	            	
+	            	tempString=tempString.replace(" ",""); 
 	            	if(tempString.charAt(0)=='0') {
 	            		
 	            	}
