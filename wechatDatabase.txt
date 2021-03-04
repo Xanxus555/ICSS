@@ -1,0 +1,31 @@
+Drop DATABASE wechat;
+CREATE DATABASE wechat;
+
+use wechat;
+DROP TABLE IF EXISTS text;
+
+CREATE TABLE user (
+  id int(100) NOT NULL,
+  username varchar(255) default NULL,
+  password varchar(255) default NULL,
+  PRIMARY KEY  (id)
+)ENGINE=InnoDB DEFAULT CHARSET=GBK;
+
+set names GBK;
+
+insert into user values(1, 'admin', '123');
+insert into user values(2,'张飞', '123');
+insert into user values(3, 'aa', '123');
+
+select * from user;
+
+
+CREATE TABLE text (
+  user_id int(100) NOT NULL,
+  getter_id int (100) Not Null,
+  texttime timestamp Not Null,
+  text varchar(255) default NULL,
+  PRIMARY KEY  (user_id,getter_id,texttime)
+)ENGINE=InnoDB DEFAULT CHARSET=GBK;
+
+set names GBK;
