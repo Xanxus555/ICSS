@@ -5,7 +5,7 @@
 		<title>欢迎注册EasyMall</title>
 		<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
 		<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/regist.css"/>
-		<script  type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.4.2.js"></script>
+		<script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.4.2.js"></script>
 		<script type="text/javascript">
 			/* 点击图片换一张验证码  */
 			//浏览器只要发现图片的src地址变化，图片就会变化。
@@ -42,8 +42,25 @@
 					formobj.checkNull("nickname", "昵称不能为空！");
 				});
 				$("input[name='email']").blur(function(){
-					formobj.checkNull("email", "邮箱不能为空！");
-					formobj.checkEmail("email", "邮箱格式不正确！");
+					if(!formobj.checkNull("email", "邮箱不能为空！")){
+						return false;
+					}
+					else if(!formobj.checkEmail("email", "邮箱格式不正确！"))
+					{
+						return false;
+					}
+					else
+					{
+						var url="${ pageContext.request.contextPath }/user/checkEmail";
+						var email=$("input[name='email']").val();
+						$.post(url,{"email":email},
+							function(data){
+								$("#email_msg").html(data);
+							}
+						);
+					}
+					/* formobj.checkNull("email", "邮箱不能为空！");
+					formobj.checkEmail("email", "邮箱格式不正确！"); */
 				});
 				$("input[name='valistr']").blur(function(){
 					formobj.checkNull("valistr", "验证码不能为空！");
@@ -111,7 +128,7 @@
 				
 				
 			};
-			</script>
+		</script>
 	</head>
 	<body>
 	<!-- onsubmit事件在表单提交时触发，该事件会根据返回值决定是否提交表单，  
@@ -123,7 +140,7 @@
 			<h1>欢迎注册EasyMall</h1>
 			<table>
 				<tr>
-					<td colspan="2" style="color:red;text-align:center;"></span>${ msg }</td>
+					<td colspan="2" style="color:red;text-align:center;">${ msg }</td>
 				</tr>
 			
 				<tr>
@@ -159,9 +176,10 @@
 					<td class="tds">邮箱：</td>
 					<td>
 						<input type="text" name="email" value="${ param.email }"/>
-						<span></span>
+						<span id="email_msg"></span>
 					</td>
 				</tr>
+				<!-- 
 				<tr>
 					<td class="tds">验证码：</td>
 					<td>
@@ -171,6 +189,7 @@
 						<span></span>
 					</td>
 				</tr>
+				-->
 				<tr>
 					<td class="sub_td" colspan="2" class="tds">
 						<input type="submit" value="注册用户"/>

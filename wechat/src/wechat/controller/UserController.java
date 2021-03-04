@@ -34,10 +34,10 @@ public class UserController {
 	
 	@RequestMapping("/regist")
 	public String regist(User user,String valistr,HttpSession session,Model model){
-	if(!valistr.equalsIgnoreCase(session.getAttribute("code").toString())) {
+	/*if(!valistr.equalsIgnoreCase(session.getAttribute("code").toString())) {
 		model.addAttribute("msg","用户名不能为空！");
 		return "regist";
-	}
+	}*/
 	if(userService.regist(user)>0) {
 		model.addAttribute("msg","注册成功");
 		return "regist";
@@ -50,6 +50,7 @@ public class UserController {
 	@RequestMapping(value="/checkUser",method=RequestMethod.POST)
 	public void check(HttpServletRequest request,HttpServletResponse response)
 			throws IOException{
+		response.setCharacterEncoding("UTF-8");
 		String username=request.getParameter("username");
 		if(userService.checkUsername(username))
 			response.getWriter().print("用户名"+username+"已被注册!");

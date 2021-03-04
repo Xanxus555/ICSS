@@ -15,7 +15,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <!-- 实现注册功能 -->
 <insert id="regist" parameterType="wechat.po.User">
-	insert into user(id,username,password,nickname,email) 
-	      values(null,#{username},#{password},#{nickname},#{email})
+	insert into user(id,username,password) 
+	      values(#{id},#{username},#{password})
 </insert>
 </mapper>

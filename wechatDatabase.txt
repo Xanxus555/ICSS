@@ -5,7 +5,7 @@ use wechat;
 DROP TABLE IF EXISTS text;
 
 CREATE TABLE user (
-  id int(100) NOT NULL,
+  id int(100) auto_increment, 
   username varchar(255) default NULL,
   password varchar(255) default NULL,
   PRIMARY KEY  (id)
